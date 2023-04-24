@@ -9,15 +9,18 @@ public class Passenger{
     private boolean needsEspecialAttention;
     private String passportId;
     private Date registeredHour;
+    private int fila;
 
 
-    public Passenger(String name, int seatAssigned, int miles, boolean needsEspecialAttention, String passportId, Date registeredHour){
+
+    public Passenger(String name, int seatAssigned, int miles, boolean needsEspecialAttention, String passportId, Date registeredHour, int fila){
         this.name = name;
         this.seatAssigned = seatAssigned;
         this.miles = miles;
         this.needsEspecialAttention = needsEspecialAttention;
         this.passportId = passportId;
         this.registeredHour = registeredHour;
+        this.fila = fila;
 
     }
     
@@ -68,6 +71,14 @@ public class Passenger{
 
     public void setRegisteredHour(Date registeredHour){
         this.registeredHour = registeredHour;
+    }
+
+    public int getFila(){
+        return fila;
+    }
+
+    public void setFila(int fila){
+        this.fila = fila;
     }
 
 

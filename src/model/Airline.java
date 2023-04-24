@@ -80,4 +80,7 @@ public abstract class Pasajero {
     private Clase clase;
     private int fila;
     
-    public Pasajero(String nombre, String apellido, int edad, int mill
+    public Pasajero(String nombre, String apellido, int edad, int millasAcumuladas){
+        
+    }
+} 
