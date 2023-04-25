@@ -62,6 +62,7 @@ public class BoardingSystem<T extends Passenger>{
             List<T> pasajerosFila = pasajerosPorFila.get(fila);
             if (pasajerosFila != null) {
                 Collections.sort(pasajerosFila);
+                
                 ordenEmbarque.addAll(pasajerosFila);
             }
         }
