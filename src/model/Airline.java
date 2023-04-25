@@ -71,16 +71,3 @@ public class Airline<T extends Passenger> {
     }
 }
 
-public abstract class Pasajero {
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private int millasAcumuladas;
-    private boolean requiereAtencionEspecial;
-    private Clase clase;
-    private int fila;
-    
-    public Pasajero(String nombre, String apellido, int edad, int millasAcumuladas){
-        
-    }
-} 
