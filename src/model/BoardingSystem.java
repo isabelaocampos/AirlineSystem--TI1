@@ -15,23 +15,21 @@ public class BoardingSystem<T extends Passenger>{
 
     public void cargarPasajeros(String rutaArchivo) throws FileNotFoundException {
         File archivo = new File(rutaArchivo);
-        Scanner scanner = new Scanner(archivo);
-
-        while (scanner.hasNextLine()) {
-            String linea = scanner.nextLine();
-            String[] datosPasajero = linea.split(",");
-            T pasajero = (T) new Passenger(datosPasajero[0], datosPasajero[1], Integer.parseInt(datosPasajero[2]));
-            int fila = Integer.parseInt(datosPasajero[3]);
-
-            pasajeros.add(pasajero);
-            if (pasajerosPorFila.containsKey(fila)) {
-                pasajerosPorFila.get(fila).add(pasajero);
-            } else {
-                List<T> pasajerosFila = new ArrayList<>();
-                pasajerosFila.add(pasajero);
-                pasajerosPorFila.put(fila, pasajerosFila);
+        try (Scanner scanner = new Scanner(archivo)) {
+            while (scanner.hasNextLine()) {
+                String linea = scanner.nextLine();
+                String[] datosPasajero = linea.split(",");
+                T pasajero = crearPasajero(datosPasajero);
+                int fila = Integer.parseInt(datosPasajero[3]);
+    
+                pasajeros.add(pasajero);
+                pasajerosPorFila.computeIfAbsent(fila, k -> new ArrayList<>()).add(pasajero);
             }
         }
+    }
+
+    private T crearPasajero(String[] datosPasajero) {
+       
     }
 
     public List<T> buscarPasajeros(String nombre) {
@@ -44,7 +42,7 @@ public class BoardingSystem<T extends Passenger>{
         return resultados;
     }
 
-    public <T extends Pasajero> void registrarLlegada(Pasajero pasajero, Sala sala) {
+    public <T extends Passenger> void registrarLlegada(Passenger pasajero, Sala sala) {
         // Buscar al pasajero en la lista correspondiente
         List<T> lista = (List<T>) this.pasajeros.get(sala);
         int index = lista.indexOf(pasajero);

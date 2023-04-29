@@ -13,7 +13,7 @@ public class Passenger{
 
 
 
-    public Passenger(String name, int seatAssigned, int miles, boolean needsEspecialAttention, String passportId, Date registeredHour, int fila){
+    public Passenger(String name, String passportId, int fila){
         this.name = name;
         this.seatAssigned = seatAssigned;
         this.miles = miles;
