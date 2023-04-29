@@ -33,11 +33,11 @@ public class Passenger<T> {
         this.numeroPasaporte = numeroPasaporte;
     }
     
-    public String getseatNumber() {
+    public String getSeatNumber() {
         return seatNumber;
     }
     
-    public void setseatNumber(String seatNumber) {
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
 }

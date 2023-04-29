@@ -94,11 +94,11 @@ public class Flight<T extends Passenger>{
         return passengersPrioritarios.poll();
     }
     
-    public void ordenarPassengersPorLlegada() {
+    public void orderPassengerForSeat() {
         Collections.sort(Passengers, new Comparator<T>() {
             public int compare(T p1, T p2) {
                 // Ordenar por el tiempo de llegada del Passenger
-                return p1.getInformacionFlight().compareTo(p2.getInformacionFlight());
+                return p1.getSeatNumber().compareTo(p2.getSeatNumber());
             }
         });
     }
