@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.Comparator;
 
 public class Passenger<T> {
     private String nombre;
@@ -68,4 +69,26 @@ public class Passenger<T> {
     public void setSpecialCase(Boolean specialCase) {
         this.specialCase = specialCase;
     }
+
+
+    public class ComparadorPorHora<T extends Comparable<T>> implements Comparator<Passenger<T>> {
+        @Override
+        public int compare(Passenger<T> p1, Passenger<T> p2) {
+            return Integer.compare(p1.getArrivalTime(), p2.getArrivalTime());
+        }
+    }
+
+    public class ComparadorPorSilla<T extends Comparable<T>> implements Comparator<Passenger<T>> {
+        @Override
+        public int compare(Passenger<T> p1, Passenger<T> p2) {
+            int resultadoPorNumSilla = Integer.compare(p1.getNumSilla(), p2.getNumSilla());
+            if (resultadoPorNumSilla != 0) {
+                return resultadoPorNumSilla;
+            } else {
+                return p1.getletraSilla().compareTo(p2.getletraSilla());
+            }
+        }
+    
+    
+}
 }

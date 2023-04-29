@@ -11,7 +11,7 @@ public class FileReader<T> {
     public List<Passenger<T>> readPassengersFromFile(String filePath) throws FileNotFoundException {
         List<Passenger<T>> passengers = new ArrayList<>();
 
-        File archivo = new File(filePath);
+        File archivo = new File("\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\doc\\pasajeros.txt");
         Scanner lector = new Scanner(archivo);
 
         while (lector.hasNextLine()) {
