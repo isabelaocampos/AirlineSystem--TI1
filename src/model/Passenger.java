@@ -2,85 +2,40 @@ package model;
 
 import java.sql.Date;
 
-public class Passenger{
-    private String name;
-    private int seatAssigned;
-    private int miles;
-    private boolean needsEspecialAttention;
-    private String passportId;
-    private Date registeredHour;
-    private int fila;
-
-
-
-    public Passenger(String name, String passportId, int fila){
-        this.name = name;
-        this.seatAssigned = seatAssigned;
-        this.miles = miles;
-        this.needsEspecialAttention = needsEspecialAttention;
-        this.passportId = passportId;
-        this.registeredHour = registeredHour;
-        this.fila = fila;
-
+public class Passenger<T> {
+    private String nombre;
+    private String numeroPasaporte;
+    private String informacionVuelo;
+    
+    public Passenger(String nombre, String numeroPasaporte, String informacionVuelo) {
+        this.nombre = nombre;
+        this.numeroPasaporte = numeroPasaporte;
+        this.informacionVuelo = informacionVuelo;
     }
     
-    public String getName(){
-        return name;
+    // Métodos get y set para los atributos
+    
+    public String getNombre() {
+        return nombre;
     }
-
-    public void setName(String name){
-        this.name = name;
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
-    public int getSeatAssigned(){
-        return seatAssigned;
+    
+    public String getNumeroPasaporte() {
+        return numeroPasaporte;
     }
-
-    public void setSeatAssigned(int seatAssigned){
-        this.seatAssigned = seatAssigned;
-
+    
+    public void setNumeroPasaporte(String numeroPasaporte) {
+        this.numeroPasaporte = numeroPasaporte;
     }
-
-    public int getMiles(){
-        return miles;
+    
+    public String getInformacionVuelo() {
+        return informacionVuelo;
     }
-
-    public void setMiles(int miles){
-        this.miles = miles;
+    
+    public void setInformacionVuelo(String informacionVuelo) {
+        this.informacionVuelo = informacionVuelo;
     }
-
-    public boolean getNeedsEspecialAttention(){
-        return needsEspecialAttention;
-    }
-
-    public void setNeedsEspecialAttention(boolean needsEspecialAttention){
-        this.needsEspecialAttention = needsEspecialAttention;
-    }
-
-    public String getPassportId(){
-        return passportId;
-    }
-
-    public void setPassportId(String passportId){
-        this.passportId = passportId;
-    }
-
-    public Date getRegisteredHour(){
-        return registeredHour;
-    }
-
-    public void setRegisteredHour(Date registeredHour){
-        this.registeredHour = registeredHour;
-    }
-
-    public int getFila(){
-        return fila;
-    }
-
-    public void setFila(int fila){
-        this.fila = fila;
-    }
-
-
-
 }
