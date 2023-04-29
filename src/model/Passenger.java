@@ -5,12 +5,14 @@ import java.sql.Date;
 public class Passenger<T> {
     private String nombre;
     private String numeroPasaporte;
-    private String informacionVuelo;
+    private String seatNumber;
+    private Date timeArrive;
     
-    public Passenger(String nombre, String numeroPasaporte, String informacionVuelo) {
+    public Passenger(String nombre, String numeroPasaporte, String seatNumber, Date timeArrive) {
         this.nombre = nombre;
         this.numeroPasaporte = numeroPasaporte;
-        this.informacionVuelo = informacionVuelo;
+        this.seatNumber = seatNumber;
+        this.timeArrive = timeArrive;
     }
     
     // Métodos get y set para los atributos
@@ -31,11 +33,11 @@ public class Passenger<T> {
         this.numeroPasaporte = numeroPasaporte;
     }
     
-    public String getInformacionVuelo() {
-        return informacionVuelo;
+    public String getseatNumber() {
+        return seatNumber;
     }
     
-    public void setInformacionVuelo(String informacionVuelo) {
-        this.informacionVuelo = informacionVuelo;
+    public void setseatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }
