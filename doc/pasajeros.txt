@@ -1,0 +1,10 @@
+Laura Rodríguez,7654321,7A
+Michael Johnson,1234567,23B
+Ana Pérez,9876543,12C
+James Lee,4567890,4D
+María García,2345678,16F
+David Kim,8765432,10A
+Sarah Jones,3456789,8B
+Juan Hernández,5678901,19D
+Lisa Chen,3216547,15E
+Mark Davis,8901234,2F
