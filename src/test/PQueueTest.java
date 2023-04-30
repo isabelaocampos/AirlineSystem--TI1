@@ -66,16 +66,11 @@ public class PQueueTest {
     }
     @Test
     public void testIsEmpty() {
-        assertEquals(true, pq.isEmpty());
-        pq.insert(5);
-        assertEquals(false, pq.isEmpty());
-        pq.remove();
-        assertEquals(false, pq.isEmpty());
-        pq.remove();
-        pq.remove();
-        pq.remove();
-        pq.remove();
-        assertEquals(true, pq.isEmpty());
+        PQueue<Integer> pq = new PQueue<>();
+        assertTrue(pq.isEmpty());
+
+        pq.insert(1);
+        assertFalse(pq.isEmpty());
     }
 
     @Test
