@@ -1,4 +1,4 @@
-package model;
+package datastructures.model;
 
 public class Controller {
 

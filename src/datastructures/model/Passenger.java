@@ -1,7 +1,6 @@
-package model;
+package datastructures.model;
 
 import java.time.LocalTime;
-import java.util.Comparator;
 
 public class Passenger<T> implements Comparable<Passenger> {
     private String nombre;

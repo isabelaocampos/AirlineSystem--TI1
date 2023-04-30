@@ -1,7 +1,4 @@
-package model;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+package datastructures.model;
 
 import java.util.PriorityQueue;
 import java.util.Queue;

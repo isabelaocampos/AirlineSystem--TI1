@@ -1,4 +1,4 @@
-package model;
+package datastructures.model;
 import java.util.*;
 
 public class PQueue<T extends Comparable<T>> {

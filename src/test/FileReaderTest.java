@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import model.FileReader;
-import model.Passenger;
+import datastructures.model.FileReader;
+import datastructures.model.Passenger;
 import org.junit.Test;
 
 
