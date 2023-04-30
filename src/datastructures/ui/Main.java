@@ -81,7 +81,7 @@ public class  Main{
 		String pathfile = reader.next();
 		System.out.println("Write amount of passengers: ");
 		int num = reader.nextInt();
-		controller.uploadPss();
+		controller.uploadPss(pathfile,num);
 
 	}
 

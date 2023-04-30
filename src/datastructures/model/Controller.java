@@ -29,7 +29,7 @@ public class Controller {
         this.timePlane = timePlane;
     }
 
-    public void uploadPassengers(String archivo, int num) {
+    public void uploadPss(String archivo, int num) {
         File file = new File(archivo);
         hashTable = new HashTable<>(num);
         try {
@@ -50,7 +50,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
-    public void orderPassenger(String archivo) {
+    public void passengerOrder(String archivo) {
         File file = new File(archivo);
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -92,11 +92,12 @@ public class Controller {
 
     }
 
-    public void showOrder(){
+    public void showBoardingOrder(){
         firstClass.print();
         turistClass.print();
     }
-    public void showOut(){
+    public void showDisOrder(){
+
         out.print();
     }
 
