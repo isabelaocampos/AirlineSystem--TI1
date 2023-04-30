@@ -1,71 +1,48 @@
 package datastructures.model;
 
 import java.util.NoSuchElementException;
+import java.util.ArrayList;
+import java.util.EmptyStackException;
+import java.util.Collections;
 
 public class Queue<T> {
-
-    private Node<T> front;
-    private Node<T> rear;
-    private int size;
-
-    private static class Node<T> {
-        private T item;
-        private Node<T> next;
-
-        public Node(T item, Node<T> next) {
-            this.item = item;
-            this.next = next;
-        }
-    }
+    private ArrayList<T> queue;
 
     public Queue() {
-        front = rear = null;
-        size = 0;
+        queue = new ArrayList<>();
     }
-
 
     public void enqueue(T item) {
-        Node<T> newNode = new Node<>(item, null);
-        if (isEmpty()) {
-            front = rear = newNode;
-        } else {
-            rear.next = newNode;
-            rear = newNode;
-        }
-        size++;
+        queue.add(item);
     }
 
-
     public T dequeue() {
+
         if (isEmpty()) {
-            throw new NoSuchElementException("Queue is empty");
+            throw new EmptyStackException();
         }
-        T item = front.item;
-        if (front == rear) {
-            front = rear = null;
-        } else {
-            front = front.next;
-        }
-        size--;
-        return item;
+        return queue.remove(0);
     }
 
     public T peek() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Queue is empty");
+            throw new EmptyStackException();
         }
-        return front.item;
+        return queue.get(0);
     }
-
 
     public boolean isEmpty() {
-        return front == null;
+        return queue.isEmpty();
     }
 
-
-    public int size() {
-        return size;
+    public void print() {
+        System.out.print("\nTurist Class:\n");
+        for (T item : queue) {
+            System.out.print(item + " ");
+        }
+        System.out.println();
     }
+
 }
 
 
