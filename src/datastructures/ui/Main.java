@@ -45,7 +45,7 @@ public class  Main{
 						"3. Disembarking list of passengers \n" +
                 "0. Exit");
 
-		option = reader.nextInt(); 
+		option = validateIntegerInput();
 
 		return option; 
 	}
@@ -55,16 +55,11 @@ public class  Main{
         switch(option){
 			case 1:
 				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\data\\ordenDeLlegada.csv
-				//File projectDir = new File(System.getProperty("user.dir"));
-				//File dataDirectory = new File(projectDir+"/data");
-				//File result = new File(projectDir+ "\ordenDeLlegada.csv”);
-				//System.out.println(dataDirectory);
-				//System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
-				//String file = reader.next();
-				//System.out.println(file);
-				//controller.passengerOrder(file);
-				System.out.println("orden de los pasajeros, ingrese la direccion del txt donde estan los pasajeros por orden de llegada.");
-				String file= reader.next();
+				System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
+				String file = reader.nextLine();
+				System.out.println(file);
+				//reader.next(); // Consumir el carácter de nueva línea restante
+
 				controller.passengerOrder(file);
 				break;
 			case 2:
@@ -100,7 +95,8 @@ public class  Main{
 		int option = 0; 
 
 		if(reader.hasNextInt()){
-			option = reader.nextInt(); 
+			option = reader.nextInt();
+
 		}
 		else{ 
 			reader.nextLine(); 
