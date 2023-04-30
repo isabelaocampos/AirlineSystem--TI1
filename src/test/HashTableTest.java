@@ -17,14 +17,14 @@ public class HashTableTest {
     @Test
     public void testPutIncrementsSize() {
         // arrange
-        hashTable.put(1, "value1");
-        hashTable.put(2, "value2");
+        hashTable.add(1, "value1");
+        hashTable.add(2, "value2");
 
         // assert
         assertEquals(2, hashTable.size());
 
         // arrange
-        hashTable.put(3, "value3");
+        hashTable.add(3, "value3");
 
         // assert
         assertEquals(3, hashTable.size());
@@ -33,10 +33,10 @@ public class HashTableTest {
     @Test
     public void testPutUpdatesValue() {
         // arrange
-        hashTable.put(1, "value1");
+        hashTable.add(1, "value1");
 
         // act
-        hashTable.put(1, "new_value1");
+        hashTable.add(1, "new_value1");
 
         // assert
         assertEquals("new_value1", hashTable.get(1));
@@ -45,8 +45,8 @@ public class HashTableTest {
     @Test
     public void testPutSameHash() {
         // arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
+        hashTable.add(1, "value1");
+        hashTable.add(11, "value11");
 
         // assert
         assertEquals("value1", hashTable.get(1));
@@ -57,7 +57,7 @@ public class HashTableTest {
     @Test
     public void testGetExistingKey() {
         //Arrange
-        hashTable.put(1, "value1");
+        hashTable.add(1, "value1");
 
         //Assert
         assertEquals("value1", hashTable.get(1));
@@ -72,8 +72,8 @@ public class HashTableTest {
     @Test
     public void testGetSameHash() {
         //Arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
+        hashTable.add(1, "value1");
+        hashTable.add(11, "value11");
 
         //Assert
         assertEquals("value1", hashTable.get(1));
@@ -83,7 +83,7 @@ public class HashTableTest {
     @Test
     public void testContainsKeyExisting() {
         //Arrange
-        hashTable.put(1, "value1");
+        hashTable.add(1, "value1");
 
         //Assert
         assertTrue(hashTable.containsKey(1));
