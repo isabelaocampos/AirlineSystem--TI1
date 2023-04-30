@@ -10,6 +10,8 @@ public class Passenger<T> {
     private String letraSilla;
     private int timeArrive;
     private Boolean specialCase;
+
+    private String destiny;
     
     public Passenger(String nombre, String numeroPasaporte, int numSilla, String letraSilla, int timeArrive, Boolean specialCase) {
         this.nombre = nombre;
@@ -68,6 +70,10 @@ public class Passenger<T> {
     
     public void setSpecialCase(Boolean specialCase) {
         this.specialCase = specialCase;
+    }
+
+    public String getDestino() {
+        return destiny;
     }
 
 
