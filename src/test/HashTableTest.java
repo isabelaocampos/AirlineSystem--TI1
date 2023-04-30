@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class HashTableTest {
+ public class HashTableTest {
     private HashTable<Integer, String> hashTable;
 
     @Before
@@ -15,162 +15,91 @@ public class HashTableTest {
     }
 
     @Test
-    public void testPutIncrementsSize() {
-        // arrange
-        hashTable.put(1, "value1");
-        hashTable.put(2, "value2");
-
-        // assert
-        assertEquals(2, hashTable.size());
-
-        // arrange
-        hashTable.put(3, "value3");
-
-        // assert
-        assertEquals(3, hashTable.size());
+    public void testAddAndGet() {
+        HashTable<String, Integer> table = new HashTable<>(5);
+        table.add("a", 1);
+        table.add("b", 2);
+        table.add("c", 3);
+        assertEquals(Integer.valueOf(1), table.get("a"));
+        assertEquals(Integer.valueOf(2), table.get("b"));
+        assertEquals(Integer.valueOf(3), table.get("c"));
     }
 
     @Test
-    public void testPutUpdatesValue() {
-        // arrange
-        hashTable.put(1, "value1");
-
-        // act
-        hashTable.put(1, "new_value1");
-
-        // assert
-        assertEquals("new_value1", hashTable.get(1));
+    public void testRemove() {
+        HashTable<String, Integer> table = new HashTable<>(5);
+        table.add("a", 1);
+        table.add("b", 2);
+        table.add("c", 3);
+        table.remove("b");
+        assertNull(table.get("b"));
+        assertEquals(Integer.valueOf(1), table.get("a"));
+        assertEquals(Integer.valueOf(3), table.get("c"));
     }
-
     @Test
-    public void testPutSameHash() {
-        // arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
-
-        // assert
-        assertEquals("value1", hashTable.get(1));
-        assertEquals("value11", hashTable.get(11));
+    public void testIsEmpty() {
+        HashTable<String, Integer> table = new HashTable<>(5);
+        assertTrue(table.isEmpty());
+        table.add("a", 1);
+        table.add("b", 2);
+        table.add("c", 3);
+        assertFalse(table.isEmpty());
+        table.clear();
+        assertTrue(table.isEmpty());
     }
-
-
     @Test
-    public void testGetExistingKey() {
-        //Arrange
-        hashTable.put(1, "value1");
-
-        //Assert
-        assertEquals("value1", hashTable.get(1));
+    public void testNullKeyAndValue() {
+        HashTable<String, Integer> table = new HashTable<>(5);
+        table.add("a", null);
+        assertNull(table.get("a"));
+        table.add(null, 1);
+        assertEquals(Integer.valueOf(1), table.get(null));
+        table.add(null, null);
+        assertNull(table.get(null));
     }
-
     @Test
-    public void testGetNonExistingKey() {
-        //Assert: se verifica que la clave 1 no existe en la tabla hash
-        assertNull(hashTable.get(1));
+    public void testAddMultipleElements() {
+        HashTable<String, Integer> hashTable = new HashTable<>(5);
+        hashTable.add("a", 1);
+        hashTable.add("b", 2);
+        hashTable.add("c", 3);
+        hashTable.add("d", 4);
+        hashTable.add("e", 5);
+        assertEquals(5, hashTable.size());
     }
-
     @Test
-    public void testGetSameHash() {
-        //Arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
-
-        //Assert
-        assertEquals("value1", hashTable.get(1));
-        assertEquals("value11", hashTable.get(11));
+    public void testAddAndGetElement() {
+        HashTable<String, Integer> hashTable = new HashTable<>(5);
+        hashTable.add("a", 1);
+        assertEquals(Integer.valueOf(1), hashTable.get("a"));
     }
-
     @Test
-    public void testContainsKeyExisting() {
-        //Arrange
-        hashTable.put(1, "value1");
-
-        //Assert
-        assertTrue(hashTable.containsKey(1));
+    public void testAddMultipleElementsSameKey() {
+        HashTable<String, Integer> hashTable = new HashTable<>(5);
+        hashTable.add("a", 1);
+        hashTable.add("b", 2);
+        hashTable.add("c", 3);
+        hashTable.add("a", 4);
+        assertEquals(Integer.valueOf(4), hashTable.get("a"));
     }
-
-
     @Test
-    public void testContainsKeyNonExisting() {
-        //Assert
-        assertFalse(hashTable.containsKey(1));
-    }
-
-    @Test
-    public void testContainsKeySameHash() {
-        //Arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
-
-        //Assert
-        assertTrue(hashTable.containsKey(1));
-        assertTrue(hashTable.containsKey(11));
-    }
-
-    @Test
-    public void testClearNonEmptyTable() {
-        //Arrange
-        hashTable.put(1, "value1");
-        hashTable.put(2, "value2");
-
-        //Act
-        hashTable.clear();
-
-        //Assert
-        assertEquals(0, hashTable.size());
-        assertNull(hashTable.get(1));
-        assertNull(hashTable.get(2));
-    }
-
-    @Test
-    public void testClearEmptyTable() {
-        //Act
-        hashTable.clear();
-
-        //Assert
+    public void testAddAndRemoveElement() {
+        HashTable<String, Integer> hashTable = new HashTable<>(5);
+        hashTable.add("a", 1);
+        hashTable.remove("a");
         assertEquals(0, hashTable.size());
     }
-
-
     @Test
-    public void testRemoveExistingKey() {
-        //Arrange
-        hashTable.put(1, "value1");
-
-        //Act
-        String removedValue = hashTable.remove(1);
-
-        //Assert
-        assertEquals("value1", removedValue);
-        //Assert
-        assertNull(hashTable.get(1));
-        //Assert
-        assertEquals(0, hashTable.size());
-    }
-
-    @Test
-    public void testRemoveNonExistingKey() {
-        //Assert: se verifica que intentar remover una clave que no existe, para que devuelva null
-        assertNull(hashTable.remove(1));
-    }
-
-    @Test
-    public void testRemoveSameHash() {
-        //Arrange
-        hashTable.put(1, "value1");
-        hashTable.put(11, "value11");
-
-        //Act
-        String removedValue = hashTable.remove(1);
-
-        //Assert
-        assertEquals("value1", removedValue);
-        //Assert
-        assertNull(hashTable.get(1));
-        //Assert
-        assertEquals("value11", hashTable.get(11));
-        //Assert
-        assertEquals(1, hashTable.size());
+    public void testPrintElements() {
+        HashTable<String,Integer> hashTable = new HashTable<>(5);
+        hashTable.add("a", 1);
+        hashTable.add("b", 2);
+        hashTable.add("c", 3);
+        hashTable.add("d", 4);
+        hashTable.add("e", 5);
+        String expectedOutput = "[ 5, 4, 3, 2, 1 ]\n[ ]\n[ ]\n[ ]\n[ ]\n";
+        assertEquals(expectedOutput, hashTable.print());
     }
 
 }
+
