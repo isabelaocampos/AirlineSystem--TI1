@@ -1,6 +1,6 @@
 package datastructures.model;
 
-import java.util.LinkedList;
+
 
  public class HashTable<K extends Comparable<K>, V> {
      private HashNode<K, V>[] table;

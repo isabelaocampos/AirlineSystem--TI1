@@ -11,15 +11,13 @@ public class PQueue<T extends Comparable<T>> {
     
     public void insert(T value) {
         heap.add(value);
-        int index = heap.size() - 1;
-        while (index > 0) {
-            int parentIndex = (index - 1) / 2;
-            if (heap.get(index).compareTo(heap.get(parentIndex)) > 0) {
-                swap(index, parentIndex);
-                index = parentIndex;
-            } else {
-                break;
-            }
+        int i = heap.size() - 1;
+        int parent = (i - 1) / 2;
+
+        while (i > 0 && heap.get(i).compareTo(heap.get(parent)) > 0) {
+            swap(i, parent);
+            i = parent;
+            parent = (i - 1) / 2;
         }
     }
     
@@ -27,31 +25,35 @@ public class PQueue<T extends Comparable<T>> {
         if (heap.size() == 0) {
             throw new NoSuchElementException();
         }
-        T result = heap.get(0);
+
         if (heap.size() == 1) {
-            heap.remove(0);
-            return result;
+            return heap.remove(0);
         }
+
+        T root = heap.get(0);
         heap.set(0, heap.remove(heap.size() - 1));
-        int index = 0;
-        while (true) {
-            int leftChildIndex = index * 2 + 1;
-            int rightChildIndex = index * 2 + 2;
-            if (leftChildIndex >= heap.size()) {
-                break;
+
+        int i = 0;
+        int leftChild = 1;
+        int rightChild = 2;
+
+        while (leftChild < heap.size()) {
+            int maxChild = leftChild;
+            if (rightChild < heap.size() && heap.get(rightChild).compareTo(heap.get(leftChild)) > 0) {
+                maxChild = rightChild;
             }
-            int maxChildIndex = leftChildIndex;
-            if (rightChildIndex < heap.size() && heap.get(rightChildIndex).compareTo(heap.get(leftChildIndex)) > 0) {
-                maxChildIndex = rightChildIndex;
-            }
-            if (heap.get(maxChildIndex).compareTo(heap.get(index)) > 0) {
-                swap(index, maxChildIndex);
-                index = maxChildIndex;
+
+            if (heap.get(i).compareTo(heap.get(maxChild)) < 0) {
+                swap(i, maxChild);
+                i = maxChild;
+                leftChild = 2 * i + 1;
+                rightChild = 2 * i + 2;
             } else {
                 break;
             }
         }
-        return result;
+
+        return root;
     }
     
     private void swap(int i, int j) {

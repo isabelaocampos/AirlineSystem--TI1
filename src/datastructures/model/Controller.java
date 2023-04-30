@@ -64,8 +64,7 @@ public class Controller {
                     passenger.setArrivalTime(LocalTime.now());
                     out.insert(passenger);
                     if(passenger.getArrivalTime().isBefore(getTimePlane())){
-                        //se premia puntualidad. xddd
-                        // una idea.
+
                         // passenger.setMiles(passenger.getMiles()+ 100);
                     }
 
@@ -78,7 +77,7 @@ public class Controller {
                     }
                 }
                 else{
-                    System.out.println("no se encontro el pasajero :C");
+                    System.out.println("Passenger not founded");
                 }
 
             }
