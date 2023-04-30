@@ -1,5 +1,6 @@
 package datastructures.ui;
 
+import java.io.File;
 import java.util.Scanner;
 import datastructures.model.*;
 
@@ -54,9 +55,13 @@ public class  Main{
         switch(option){
 			case 1:
 				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\data\\ordenDeLlegada.csv
-
+				File projectDir = new File(System.getProperty("user.dir"));
+				File dataDirectory = new File(projectDir+"/data");
+				File result = new File(projectDir+ "\ordenDeLlegada.csv”);
+				System.out.println(dataDirectory);
 				System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
 				String file = reader.next();
+				System.out.println(file);
 				controller.passengerOrder(file);
 				break;
 			case 2:

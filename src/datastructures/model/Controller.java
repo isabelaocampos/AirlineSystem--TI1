@@ -38,7 +38,7 @@ public class Controller {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] atributs = line.split(";");
-                Passenger passenger = new Passenger(atributs[0], Integer.parseInt(atributs[1]), Integer.parseInt(atributs[2]),Integer.parseInt(atributs[3]),
+                Passenger passenger = new Passenger(atributs[0],Integer.parseInt(atributs[1]), Integer.parseInt(atributs[2]),Integer.parseInt(atributs[3]),
                         Integer.parseInt(atributs[4]),atributs[5],Boolean.parseBoolean(atributs[6]));
 
                 hashTable.add(Integer.parseInt(atributs[1]),passenger);
