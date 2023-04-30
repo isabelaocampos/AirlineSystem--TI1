@@ -2,7 +2,7 @@ package datastructures.model;
 
 import java.time.LocalTime;
 
-public class Passenger<T> implements Comparable<Passenger> {
+public class Passenger implements Comparable<Passenger> {
     private String nombre;
     private int agePassenger;
     private int numPassport;
@@ -12,11 +12,12 @@ public class Passenger<T> implements Comparable<Passenger> {
     private int millesPassenger;
     private Boolean specialCase;
 
-    private String destiny;
+    private String destination;
     
-    public Passenger(String nombre, int agePassenger, int numPassport, int numChair, String chairLetter, LocalTime timeArrive, Boolean specialCase) {
+    public Passenger(String nombre, int numPassport, int agePassenger, int millesPassenger, int numChair, String chairLetter, Boolean specialCase) {
         this.nombre = nombre;
         this.agePassenger = agePassenger;
+        this.millesPassenger = millesPassenger;
         this.numPassport = numPassport;
         this.numChair = numChair;
         this.chairLetter = chairLetter;

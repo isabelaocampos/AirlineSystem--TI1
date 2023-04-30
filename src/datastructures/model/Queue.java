@@ -1,43 +1,70 @@
 package datastructures.model;
 
-import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-public class Queue<E> {
-    private LinkedList<E> list;
+public class Queue<T> {
+
+    private Node<T> front;
+    private Node<T> rear;
+    private int size;
+
+    private static class Node<T> {
+        private T item;
+        private Node<T> next;
+
+        public Node(T item, Node<T> next) {
+            this.item = item;
+            this.next = next;
+        }
+    }
 
     public Queue() {
-        list = new LinkedList<>();
+        front = rear = null;
+        size = 0;
     }
 
 
-    public void enqueue(E element) {
-        list.addLast(element);
-    }
-
-
-    public E dequeue() {
+    public void enqueue(T item) {
+        Node<T> newNode = new Node<>(item, null);
         if (isEmpty()) {
-            return null;
+            front = rear = newNode;
+        } else {
+            rear.next = newNode;
+            rear = newNode;
         }
-
-        return list.removeFirst();
+        size++;
     }
 
-    public E peek() {
+
+    public T dequeue() {
         if (isEmpty()) {
-            return null;
+            throw new NoSuchElementException("Queue is empty");
         }
-
-        return list.getFirst();
+        T item = front.item;
+        if (front == rear) {
+            front = rear = null;
+        } else {
+            front = front.next;
+        }
+        size--;
+        return item;
     }
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue is empty");
+        }
+        return front.item;
+    }
+
 
     public boolean isEmpty() {
-        return list.isEmpty();
+        return front == null;
     }
 
 
     public int size() {
-        return list.size();
+        return size;
     }
 }
 
