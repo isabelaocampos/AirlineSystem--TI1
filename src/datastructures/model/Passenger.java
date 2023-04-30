@@ -107,7 +107,7 @@ public class Passenger<T> implements Comparable<Passenger> {
             case "C": case "D": return 1;
             case "B": case "E": return 2;
             case "A": case "F": return 3;
-            default: throw new IllegalArgumentException("Columna inválida: " + chairLetter);
+            default: throw new IllegalArgumentException("Invalid seat letter:" + chairLetter);
         }
     }
 

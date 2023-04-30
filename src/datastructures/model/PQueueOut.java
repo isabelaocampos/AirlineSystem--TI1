@@ -69,7 +69,7 @@ public class PQueueOut<T extends Comparable<T>> {
     }
 
     public void print() {
-        System.out.println("Orden de salida de los pasajeros es: \n");
+        System.out.println("Passenger departure order is: \n");
         for (T item : heap) {
             System.out.print(item + " ");
         }
