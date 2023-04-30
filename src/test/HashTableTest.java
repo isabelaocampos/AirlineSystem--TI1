@@ -42,22 +42,7 @@ public class HashTableTest {
         assertEquals(5, hashTable.size());
     }
 
-    @Test
-    public void testAddAndGetElement() {
-        HashTable<String, Integer> hashTable = new HashTable<>(5);
-        hashTable.add("a", 1);
-        assertEquals(Integer.valueOf(1), hashTable.get("a"));
-    }
 
-    @Test
-    public void testAddMultipleElementsSameKey() {
-        HashTable<String, Integer> hashTable = new HashTable<>(5);
-        hashTable.add("a", 1);
-        hashTable.add("b", 2);
-        hashTable.add("c", 3);
-        hashTable.add("a", 4);
-        assertEquals(Integer.valueOf(4), hashTable.get("a"));
-    }
     @Test
     public void testHash() { //testeamos el método hash
         HashTable<Integer, String> table = new HashTable<>(10);

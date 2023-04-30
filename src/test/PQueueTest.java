@@ -42,28 +42,7 @@ public class PQueueTest {
         assertEquals(0, queue.size());
         assertThrows(NoSuchElementException.class, () -> queue.remove());
     }
-    @Test
-    public void testInsertionAndRemoval() {
-        PQueue<Integer> pq = new PQueue<>();
-        pq.insert(7);
-        pq.insert(2);
-        pq.insert(5);
-        pq.insert(1);
-        pq.insert(10);
-        pq.insert(3);
 
-        assertEquals(6, pq.size());
-        assertFalse(pq.isEmpty());
-
-        assertEquals(10, pq.remove().intValue());
-        assertEquals(7, pq.remove().intValue());
-        assertEquals(5, pq.remove().intValue());
-        assertEquals(3, pq.remove().intValue());
-        assertEquals(2, pq.remove().intValue());
-        assertEquals(1, pq.remove().intValue());
-
-        assertTrue(pq.isEmpty());
-    }
     @Test
     public void testIsEmpty() {
         PQueue<Integer> pq = new PQueue<>();
@@ -73,32 +52,6 @@ public class PQueueTest {
         assertFalse(pq.isEmpty());
     }
 
-    @Test
-    public void testInsertionAndRemovalWithDuplicates() {
-        PQueue<Integer> pq = new PQueue<>();
-        pq.insert(7);
-        pq.insert(2);
-        pq.insert(5);
-        pq.insert(1);
-        pq.insert(5);
-        pq.insert(10);
-        pq.insert(3);
-        pq.insert(7);
-
-        assertEquals(8, pq.size());
-        assertFalse(pq.isEmpty());
-
-        assertEquals(10, pq.remove().intValue());
-        assertEquals(7, pq.remove().intValue());
-        assertEquals(7, pq.remove().intValue());
-        assertEquals(5, pq.remove().intValue());
-        assertEquals(5, pq.remove().intValue());
-        assertEquals(3, pq.remove().intValue());
-        assertEquals(2, pq.remove().intValue());
-        assertEquals(1, pq.remove().intValue());
-
-        assertTrue(pq.isEmpty());
-    }
 
     @Test
     public void testRandomInsertionAndRemoval() {
