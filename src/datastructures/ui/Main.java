@@ -53,7 +53,9 @@ public class  Main{
 
         switch(option){
 			case 1:
-				System.out.println("Please write the pathfile of the file that has the passengers by order of arrival");
+				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\data\\ordenDeLlegada.csv
+
+				System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
 				String file = reader.next();
 				controller.passengerOrder(file);
 				break;
@@ -77,8 +79,9 @@ public class  Main{
     }
 
 	public void readerTxt(){
-		System.out.println("Write the pathfile of the passenger file");
-		String pathfile = reader.next();
+		//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\data\\pasajeros.csv
+		System.out.println("Write the pathfile of the passenger file (pasajeros.csv)");
+		String pathfile = reader.nextLine();
 		System.out.println("Write amount of passengers: ");
 		int num = reader.nextInt();
 		controller.uploadPss(pathfile,num);
