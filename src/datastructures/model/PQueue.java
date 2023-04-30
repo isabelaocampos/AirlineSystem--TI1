@@ -59,6 +59,14 @@ public class PQueue<T extends Comparable<T>> {
         heap.set(i, heap.get(j));
         heap.set(j, temp);
     }
+
+    public void print(){
+        System.out.println("First class \n");
+        for(T value: heap){
+            System.out.print(value + " ");
+        }
+        System.out.println();
+    }
     
     public boolean isEmpty() {
         return heap.isEmpty();

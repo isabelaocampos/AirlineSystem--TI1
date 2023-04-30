@@ -3,7 +3,7 @@ package datastructures.ui;
 import java.util.Scanner;
 import datastructures.model.*;
 
-public class Main{
+public class  Main{
 
     private Scanner reader;
 	private Controller controller;

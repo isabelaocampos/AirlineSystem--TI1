@@ -2,103 +2,86 @@ package datastructures.model;
 
 import java.util.LinkedList;
 
- public class HashTable<K, V> {
-     private LinkedList<Entry<K, V>>[] table;
+ public class HashTable<K extends Comparable<K>, V> {
+     private HashNode<K, V>[] table;
      private int size;
 
-     private static class Entry<K, V> {
-         K key;
-         V value;
-
-         public Entry(K key, V value) {
-             this.key = key;
-             this.value = value;
-         }
+     public HashTable(int size) {
+         table = new HashNode[size];
+         this.size = size;
      }
 
-     public HashTable(int capacity) {
-         table = new LinkedList[capacity];
-         size = 0;
+     public V get(K key){
+        int index = hash(key);
+        HashNode<K,V> node = table[index];
+        while(node != null){
+            if(node.getKey().compareTo(key)==0){
+                return node.getValue();
+            }
+            node = node.getNext();
+        }
+        return  null;
      }
 
-     public void put(K key, V value) {
-         if (key == null) {
-             throw new IllegalArgumentException("Key cannot be null");
+
+     public void add(K key, V value){
+         int index = hash(key);
+         HashNode<K,V> node = new HashNode<K, V>(key,value);
+         if(table[index] != null){
+             table[index].setPrev(node);
+             node.setNext(table[index]);
          }
+         table[index]= node;
+     }
 
-         int hash = key.hashCode() % table.length;
 
-         if (table[hash] == null) {
-             table[hash] = new LinkedList<>();
-         }
 
-         for (Entry<K, V> entry : table[hash]) {
-             if (entry.key.equals(key)) {
-                 entry.value = value;
+
+
+     public void remove(K key) {
+         int index=hash(key);
+         HashNode<K,V> current = table[index];
+         while(current != null){
+             if(current.getKey().equals(key)){
+                 if(current.getPrevious() == null){
+                     table[index] = current.getNext();
+                 }else {
+                     current.getPrevious().setNext(current.getNext());
+                 }
+                 if (current.getNext() != null) {
+                     current.getNext().setPrev(current.getPrevious());
+                 }
                  return;
              }
+             current = current.getNext();
          }
-
-         table[hash].add(new Entry<>(key, value));
-         size++;
-     }
-
-
-     public V get(K key) {
-         int hash = key.hashCode() % table.length;
-
-         if (table[hash] == null) {
-             return null;
-         }
-
-         for (Entry<K, V> entry : table[hash]) {
-             if (entry.key.equals(key)) {
-                 return entry.value;
-             }
-         }
-
-         return null;
-     }
-
-
-     public boolean containsKey(K key) {
-         int hash = key.hashCode() % table.length;
-
-         if (table[hash] == null) {
-             return false;
-         }
-
-         for (Entry<K, V> entry : table[hash]) {
-             if (entry.key.equals(key)) {
-                 return true;
-             }
-         }
-
-         return false;
-     }
-
-
-     public V remove(K key) {
-         int hash = key.hashCode() % table.length;
-
-         if (table[hash] == null) {
-             return null;
-         }
-
-         for (Entry<K, V> entry : table[hash]) {
-             if (entry.key.equals(key)) {
-                 table[hash].remove(entry);
-                 size--;
-                 return entry.value;
-             }
-         }
-
-         return null;
      }
 
 
      public int size() {
+
          return size;
+     }
+     public String print() {
+         String msj = "";
+         for (int i = 0; i < size; i++) {
+             msj += "[ ";
+             if (table[i] != null) {
+                 HashNode<K, V> node = table[i];
+                 while (node != null) {
+                     if (node.getNext() == null) {
+                         msj += node.getValue().toString() + ". ";
+                     } else {
+                         msj += node.getValue().toString() + ", ";
+                     }
+                     node = node.getNext();
+                 }
+
+             }
+             msj += "]\n";
+
+         }
+         return msj;
      }
 
 
@@ -112,5 +95,23 @@ import java.util.LinkedList;
          }
 
          size = 0;
+     }
+
+     public void setSize(int size){
+         this.size =size;
+     }
+
+     public HashNode<K, V>[] getList() {
+         return table;
+     }
+
+     public void setList(HashNode<K, V>[] table) {
+         this.table = table;
+     }
+
+     public int hash(K key){
+         int hash = key.hashCode();
+         hash = hash < 0 ? -hash : hash;
+         return hash % size;
      }
  }
