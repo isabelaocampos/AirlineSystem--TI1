@@ -54,11 +54,10 @@ public class  Main{
 
         switch(option){
 			case 1:
-				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer Semestre\\Computacion y Estructuras Discretas I\\Integradora I\\data\\ordenDeLlegada.csv
+				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer\ Semestre\\Computacion\ y\ Estructuras\ Discretas\ I\\Integradora\ I\\data\\ordenDeLlegada.csv
 				System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
 				String file = reader.nextLine();
 				System.out.println(file);
-				//reader.next(); // Consumir el carácter de nueva línea restante
 
 				controller.passengerOrder(file);
 				break;

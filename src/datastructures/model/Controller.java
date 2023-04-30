@@ -57,7 +57,7 @@ public class Controller {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] atribut = line.split(" ");
+                String[] atribut = line.split(";");
                 Passenger passenger = hashTable.get(Integer.parseInt(atribut[0]));
                 if (passenger != null) {
                     passenger.toString();
