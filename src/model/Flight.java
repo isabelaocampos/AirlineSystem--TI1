@@ -25,7 +25,7 @@ public class Flight<T extends Passenger>{
         this.passengersPrioritarios = new PriorityQueue<>(new Comparator<T>() {
             public int compare(T p1, T p2) {
                 // Ordenar por la prioridad del Passenger
-                return p2.getPrioridad() - p1.getPrioridad();
+                return p2.getPriorid ad() - p1.getPrioridad();
             }
         });
     }
