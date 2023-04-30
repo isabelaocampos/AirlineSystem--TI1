@@ -1,143 +1,71 @@
 package model;
-/**
- * Linked implementation of PriorityQueue
- * @author Tyler Stinson
- *
- * @param <T>
- */
+import java.util.*;
 
- public class PQueue<T extends Comparable<T>> {
-
-	public static void main(String[] args) {
-		PQueue<Integer> q = new PQueue<>();
-		q.push(5);
-		q.push(125);
-		q.push(4);
-		q.push(1);
-		q.push(25);
-		q.push(10);
-		while (q.peek() != null) {
-			System.out.println(q.poll());
-		}
-	}
-
-	public Node root;
-	private int size;
-	
-
-	public PQueue() {
-		root = null;
-		size = 0;
-	}
-	
-	/**
-	 * Primary sort method. Check left and right children, swap with lowest weighted node.
-	 * called recursively.
-	 * @param root
-	 */
-	private void heapify(Node root) {
-		//null check
-		if (root == null) return;
-		
-		//find min weighted node
-		Node child = getMinNode(root.left, root.right);
-
-		//if child node < parent swap and recursively call heapify
-		if (child != null && root.data.compareTo(child.data) > 0) {
-			T temp = child.data;
-			child.data = root.data;
-			root.data = temp;
-		}
-	}
-	
-	/**
-	 * Add new data onto queue.
-	 * @param data to be added to queue.
-	 */
-	public void push(T data) {
-		size++;
-		String bits = getCurBinary(size);
-		this.root = push(data, root, bits);
-	}
-	
-	/**
-	 * 
-	 * @param first
-	 * @param second
-	 * @return
-	 */
-	private Node getMinNode(Node first, Node second) {
-		if (first == null) return null;
-		if (second == null) return first; //dont need to check first as it SHOULD be the left child
-		return first.data.compareTo(second.data) < 0 ? first : second;
-	}
-
-	private Node push(T data, Node root, String bits) {
-		if (root == null) {
-			return new Node(data);
-		} else if (bits.charAt(0) == '0') {
-			root.left = push(data, root.left, bits.substring(1));
-		} else {
-			root.right = push(data, root.right, bits.substring(1));
-		}
-		heapify(root);
-		return root;
-	}
-	
-	/**
-	 * Get binary value first empty slot in tree.
-	 * @return
-	 */
-	private String getCurBinary(int size) {
-		String bin = "";
-		int temp = size;
-
-		while(temp > 1) {
-			bin = temp % 2 + bin;
-			temp /= 2;
-		}
-
-		return bin;
-	}
-	
-	
-	public T poll() {
-		if (size <= 0) return null;
-		String bits = getCurBinary(this.size);
-		this.size--;
-		T data = root.data;
-		this.root = pollHelp(root, bits);
-		return data;
-	}
-	
-	private Node pollHelp(Node root, String bits) {
-		if (bits.length() == 0) {
-			this.root.data = root.data;
-			return null;
-		} else if (bits.charAt(0) == '0') {
-			root.left = pollHelp(root.left, bits.substring(1));
-		} else {
-			root.right = pollHelp(root.right, bits.substring(1));
-		}
-		
-		heapify(root);
-		return root;
-	}
-	
-	public T peek() {
-		return this.size > 0 ? this.root.data : null;
-	}
-	
-	private class Node {
-		T data;
-		Node left;
-		Node right;
-		
-		Node(T data) {
-			this.data = data;
-			this.left = null;
-			this.right = null;
-		}
-		
-	}
+public class PQueue<T extends Comparable<T>> {
+    
+    private ArrayList<T> heap;
+    
+    public PQueue() {
+        heap = new ArrayList<T>();
+    }
+    
+    public void insert(T value) {
+        heap.add(value);
+        int index = heap.size() - 1;
+        while (index > 0) {
+            int parentIndex = (index - 1) / 2;
+            if (heap.get(index).compareTo(heap.get(parentIndex)) > 0) {
+                swap(index, parentIndex);
+                index = parentIndex;
+            } else {
+                break;
+            }
+        }
+    }
+    
+    public T remove() {
+        if (heap.size() == 0) {
+            throw new NoSuchElementException();
+        }
+        T result = heap.get(0);
+        if (heap.size() == 1) {
+            heap.remove(0);
+            return result;
+        }
+        heap.set(0, heap.remove(heap.size() - 1));
+        int index = 0;
+        while (true) {
+            int leftChildIndex = index * 2 + 1;
+            int rightChildIndex = index * 2 + 2;
+            if (leftChildIndex >= heap.size()) {
+                break;
+            }
+            int maxChildIndex = leftChildIndex;
+            if (rightChildIndex < heap.size() && heap.get(rightChildIndex).compareTo(heap.get(leftChildIndex)) > 0) {
+                maxChildIndex = rightChildIndex;
+            }
+            if (heap.get(maxChildIndex).compareTo(heap.get(index)) > 0) {
+                swap(index, maxChildIndex);
+                index = maxChildIndex;
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+    
+    private void swap(int i, int j) {
+        T temp = heap.get(i);
+        heap.set(i, heap.get(j));
+        heap.set(j, temp);
+    }
+    
+    public boolean isEmpty() {
+        return heap.isEmpty();
+    }
+    
+    public int size() {
+        return heap.size();
+    }
+    
 }

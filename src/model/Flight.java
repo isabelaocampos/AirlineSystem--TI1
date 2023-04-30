@@ -1,43 +1,27 @@
 package model;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import java.util.*;
 
-public class Flight<T extends Passenger>{
-    private String numeroFlight;
+public class Flight<K, V extends Passenger> {
+    private String numeroVuelo;
     private String fecha;
     private String horaSalida;
-    private List<T> Passengers;
-    private Queue<T> colaEspera;
-    private Map<String, BoardingSystem<T>> salasAbordaje;
-    private PriorityQueue<T> passengersPrioritarios;
+    private Map<K, V> passengersForDestiny;
     
-    public Flight(String numeroFlight, String fecha, String horaSalida) {
-        this.numeroFlight = numeroFlight;
+    public Flight(String numeroVuelo, String fecha, String horaSalida) {
+        this.numeroVuelo = numeroVuelo;
         this.fecha = fecha;
         this.horaSalida = horaSalida;
-        this.Passengers = new ArrayList<>();
-        this.colaEspera = new LinkedList<>();
-        this.salasAbordaje = new HashMap<>();
-        this.passengersPrioritarios = new PriorityQueue<>(new Comparator<T>() {
-            public int compare(T p1, T p2) {
-                // Ordenar por la prioridad del Passenger
-                return p2.getPrioridad() - p1.getPrioridad();
-            }
-        });
+        this.passengersForDestiny = new HashMap<>();
     }
     
     // Métodos get y set para los atributos
     
-    public String getNumeroFlight() {
-        return numeroFlight;
+    public String getNumeroVuelo() {
+        return numeroVuelo;
     }
     
-    public void setNumeroFlight(String numeroFlight) {
-        this.numeroFlight = numeroFlight;
+    public void setNumeroVuelo(String numeroVuelo) {
+        this.numeroVuelo = numeroVuelo;
     }
     
     public String getFecha() {
@@ -56,53 +40,71 @@ public class Flight<T extends Passenger>{
         this.horaSalida = horaSalida;
     }
     
-    public List<T> getPassengers() {
-        return Passengers;
+    public Map<K, V> getpassengersForDestiny() {
+        return passengersForDestiny;
     }
     
-    public void setPassengers(List<T> Passengers) {
-        this.Passengers = Passengers;
+    public void setpassengersForDestiny(Map<K, V> passengersForDestiny) {
+        this.passengersForDestiny = passengersForDestiny;
     }
     
-    // Métodos para agregar y ordenar los Passengers
+    // Métodos para agregar y ordenar los pasajeros
     
-    public void agregarPassenger(T Passenger) {
-        Passengers.add(Passenger);
+    public void agregarPasajero(V passengers, K destino) {
+        passengersForDestiny.put(destino, passengers);
     }
     
-    public void agregarPassengerColaEspera(T Passenger) {
-        colaEspera.add(Passenger);
-    }
-    
-    public T obtenerSiguientePassengerColaEspera() {
-        return colaEspera.poll();
-    }
-    
-    public void agregarSalaAbordaje(String nombreSala, BoardingSystem<T> salaAbordaje) {
-        salasAbordaje.put(nombreSala, salaAbordaje);
-    }
-    
-    public BoardingSystem<T> obtenerSalaAbordaje(String nombreSala) {
-        return salasAbordaje.get(nombreSala);
-    }
-    
-    public void agregarPassengerPrioritario(T Passenger) {
-        passengersPrioritarios.add(Passenger);
-    }
-    
-    public T obtenerSiguientePassengerPrioritario() {
-        return passengersPrioritarios.poll();
-    }
-    
-    public void orderPassengerForSeat() {
-        Collections.sort(Passengers, new Comparator<T>() {
-            public int compare(T p1, T p2) {
-                // Ordenar por el tiempo de llegada del Passenger
-                return p1.getSeatNumber().compareTo(p2.getSeatNumber());
+    public void ordenarPasajerosPorLlegada() {
+        List<V> pasajeros = new ArrayList<>(passengersForDestiny.values());
+        Collections.sort(pasajeros, new Comparator<V>() {
+            public int compare(V p1, V p2) {
+                // Ordenar por el tiempo de llegada del passengers
+                return p1.getArrivalTime().compareTo(p2.getArrivalTime());
             }
         });
+        passengersForDestiny.clear();
+        for (V passengers : pasajeros) {
+            passengersForDestiny.put((K) passengers.getDestino(), passengers);
+        }
+    }
+    
+    public void ordenarPasajerosPorPrimeraClase() {
+        List<V> pasajeros = new ArrayList<>(passengersForDestiny.values());
+        Collections.sort(pasajeros, new Comparator<V>() {
+            public int compare(V p1, V p2) {
+                // Ordenar por si el passengers es de primera clase o no
+                return Boolean.compare(p2.isPrimeraClase(), p1.isPrimeraClase());
+            }
+        });
+        passengersForDestiny.clear();
+        for (V passengers : pasajeros) {
+            passengersForDestiny.put((K) passengers.getDestino(), passengers);
+        }
+    }
+    
+    public void imprimirpassengersForDestiny() {
+        // Crear la tabla hash
+        Map<String, List<Passenger>> passengersForDestiny = new HashMap<>();
+    
+        // Agregar los pasajeros a la tabla hash según su destino
+        for (Passenger passengers : passengers) {
+            String destino = passengers.getArrivalTime().getDestino();
+            List<Passenger> pasajerosDestino = passengersForDestiny.getOrDefault(destino, new ArrayList<>());
+            pasajerosDestino.add(passengers);
+            passengersForDestiny.put(destino, pasajerosDestino);
+        }
+    
+        // Imprimir los pasajeros por destino
+        for (String destino : passengersForDestiny.keySet()) {
+            System.out.println("Pasajeros con destino " + destino + ":");
+            for (Passenger passengers : passengersForDestiny.get(destino)) {
+                System.out.println("- " + passengers.getNombre() + ", número de pasaporte: " + passengers.getNumeroPasaporte());
+            }
+            System.out.println();
+        }
     }
 }    
+    
 
 
 
