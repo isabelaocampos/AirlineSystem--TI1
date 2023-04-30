@@ -43,7 +43,7 @@ public class Flight {
             System.out.println(destino + ":");
             List<Passenger> pasajerosEnDestino = pasajerosPorDestino.get(destino);
             for (Passenger pasajero : pasajerosEnDestino) {
-                System.out.println("  " + pasajero.getNombre() + " - Asiento: " + pasajero.getNumSilla());
+                System.out.println("  " + pasajero.getNombre() + " - Asiento: " + pasajero.getNumChair());
             }
         }
     }

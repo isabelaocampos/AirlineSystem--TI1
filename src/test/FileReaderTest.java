@@ -21,7 +21,7 @@ public class FileReaderTest {
         assertEquals(3, passengers.size());
         assertEquals("Juan", passengers.get(0).getNombre());
         assertEquals("12345", passengers.get(0).getNumeroPasaporte());
-        assertEquals(1, passengers.get(0).getNumSilla());
+        assertEquals(1, passengers.get(0).getNumChair());
         assertEquals("A", passengers.get(0).getletraSilla());
         assertEquals(10, passengers.get(0).getArrivalTime());
         assertEquals(false, passengers.get(0).getSpecialCase());
@@ -41,13 +41,13 @@ public class FileReaderTest {
         assertEquals(2, passengers.size());
         assertEquals("Juan", passengers.get(0).getNombre());
         assertEquals("12345", passengers.get(0).getNumeroPasaporte());
-        assertEquals(1, passengers.get(0).getNumSilla());
+        assertEquals(1, passengers.get(0).getNumChair());
         assertEquals("A", passengers.get(0).getletraSilla());
         assertEquals(10, passengers.get(0).getArrivalTime());
         assertEquals(false, passengers.get(0).getSpecialCase());
         assertEquals("Pepe", passengers.get(1).getNombre());
         assertEquals("67890", passengers.get(1).getNumeroPasaporte());
-        assertEquals(2, passengers.get(1).getNumSilla());
+        assertEquals(2, passengers.get(1).getNumChair());
         assertEquals("B", passengers.get(1).getletraSilla());
         assertEquals(12, passengers.get(1).getArrivalTime());
         assertEquals(true, passengers.get(1).getSpecialCase());
