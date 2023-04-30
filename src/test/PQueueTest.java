@@ -77,7 +77,7 @@ public class PQueueTest {
         pq.remove();
         assertEquals(true, pq.isEmpty());
     }
-    
+
     @Test
     public void testInsertionAndRemovalWithDuplicates() {
         PQueue<Integer> pq = new PQueue<>();
