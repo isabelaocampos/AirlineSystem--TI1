@@ -54,12 +54,14 @@ public class  Main{
 
         switch(option){
 			case 1:
-				//C:\\Users\\Isabella\\Documents\\ICESI\\Tercer\ Semestre\\Computacion\ y\ Estructuras\ Discretas\ I\\Integradora\ I\\data\\ordenDeLlegada.csv
-				System.out.println("Please write the pathfile of the file (ordenDeLlegada.csv) that has the passengers by order of arrival");
-				String file = reader.nextLine();
-				System.out.println(file);
 
-				controller.passengerOrder(file);
+				File projectDir = new File(System.getProperty("user.dir")); // ruta absoluta al directorio del proyecto
+				File dataDir = new File(projectDir+"/data");
+				File file = new File(dataDir+"/ordenDeLlegada.csv");
+
+				controller.passengerOrder(file.getAbsolutePath());
+				System.out.println("Initialized passengers");
+
 				break;
 			case 2:
 				controller.showBoardingOrder();

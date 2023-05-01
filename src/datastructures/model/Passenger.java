@@ -143,6 +143,10 @@ public class Passenger implements Comparable<Passenger> {
 
     }
 
+    @Override
+    public String toString() {
+        return "Passenger is :" + nombre + ".";
+    }
 
 
 
