@@ -21,7 +21,6 @@ public class Passenger implements Comparable<Passenger> {
         this.numPassport = numPassport;
         this.numChair = numChair;
         this.chairLetter = chairLetter;
-        this.timeArrive = timeArrive;
         this.specialCase = specialCase;
     }
     
