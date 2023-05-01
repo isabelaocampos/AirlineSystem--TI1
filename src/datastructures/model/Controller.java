@@ -67,13 +67,10 @@ public class Controller {
 
                         // passenger.setMiles(passenger.getMiles()+ 100);
                     }
-
                     if (passenger.getSpecialCase() == true) {
                         firstClass.insert(passenger);
-
                     } else {
                         turistClass.enqueue(passenger);
-
                     }
                 }
                 else{
